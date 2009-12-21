@@ -28,7 +28,7 @@ a:hover	{ color:#009;}
 #reloadImg  { cursor: pointer; background:#f3f3f3; padding: 5px; margin-left:5px; text-align: center;}
 #recaptchaImg	{ width:300px; height: 57px; border: solid 1px #ccc;}
 .line i	{ color: #666; font-size: <?=_l('10px')?>; font-style: normal; font-family: 'Arial'; padding-left:5px; width:160px; overflow:hidden; display:inline-block;}
-.line i.er  { color:#900;}api_url
+.line i.er  { color:#900;}
 .line i.ok  { color:#090;}
 #header	{ text-align: center; font-size: 18px; font-weight: bold; color:#36B6D9;}
 #footer	{text-align: right; color: #999; font-size: 11px;}
