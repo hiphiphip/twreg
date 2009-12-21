@@ -25,6 +25,7 @@ $_lang['Register Response!'] = '注册结果！';
 $_lang['Twitter clients avliable:'] = '可用的Twitter客户端：';
 $_lang['Reload'] = '重新加载';
 $_lang['Get Widget!'] = '获取小挂件！';
+$_lang['Get Open Source!'] = '获取开源代码！';
 $_lang['10px'] = '12px';
 $_lang['Please feedback to'] = '请反馈至';
 $_lang["'Arial',sans-serif"] = "'微软雅黑', '宋体'";

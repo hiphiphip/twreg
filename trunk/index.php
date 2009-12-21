@@ -27,7 +27,7 @@ textarea	{ font-size:12px; font-family:Arial, Helvetica, sans-serif;}
     <p>Use javascript code as: </p>
     <p>
       <label>
-      <textarea name="textarea" id="textarea" cols="45" rows="4" style="border:solid 5px #83D4EA; padding:5px;" onfocus="this.select();"><script>var twreg_widget_url = '<?=TWREG_URL?>widget.php?widget=true';</script>
+      <textarea name="textarea" id="textarea" cols="55" rows="4" style="border:solid 5px #83D4EA; padding:5px;" onfocus="this.select();"><script>var twreg_widget_url = '<?=TWREG_URL?>widget.php?widget=true';</script>
 <script src="<?=TWREG_URL?>widget.js"></script></textarea>
       </label>
     </p></td>
