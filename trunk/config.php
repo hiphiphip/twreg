@@ -18,11 +18,7 @@ if(isset($_GET['l'])) {
     if(isset($_COOKIE['twreg_language'])) {
         $language = $_COOKIE['twreg_language'];
     }else {
-        if(strpos($_SERVER['HTTP_USER_AGENT'], 'zh-CN;')!==false) {
-            $language = 'zh-cn';
-        }else {
-            $language = 'en';
-        }
+        $language = 'zh-cn';
     }
 }
 
