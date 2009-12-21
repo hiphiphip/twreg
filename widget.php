@@ -52,7 +52,7 @@ a:hover	{ color:#009;}
 	    <div class="line captcha"><span><?=_l('Type words')?>:</span><input type="text" size="15" name="captcha" id="captcha" /><i></i></div>
 	    <div class="line" style="text-align: center;"><input type="submit" value=" <?=_l('Create Account!')?> " /></div>
 	</form>
-        <div id="footer"><a href="./" target="_blank"><?=_l('Get Widget!')?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?=_l('Please feedback to')?> <a href="http://twitter.com/hfcorriez" target="_blank">@hfcorriez</a> <a href="http://twfav.com" target="_blank">@Twfav</a> Team</div>
+        <div id="footer"><a href="http://code.google.com/p/twreg/" target="_blank"><?=_l('Get Open Source!')?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./" target="_blank"><?=_l('Get Widget!')?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?=_l('Please feedback to')?> <a href="http://twitter.com/hfcorriez" target="_blank">@hfcorriez</a> <a href="http://twfav.com" target="_blank">@Twfav</a> Team</div>
     </div>
     <div id="wrap_mask"></div>
 <script type="text/javascript">
