@@ -23,7 +23,7 @@ textarea	{ font-size:12px; font-family:Arial, Helvetica, sans-serif;}
   <tr>
     <td align="right"><p><img src="res/t.gif" width="347" height="246" /></p>
     <p>You can put the button in your blog as: </p>
-    <p><script src="./widget.js"></script></p>
+    <p><script>var twreg_widget_url = '<?=TWREG_URL?>widget.php?widget=true';</script><script src="./widget.js"></script></p>
     <p>Use javascript code as: </p>
     <p>
       <label>
