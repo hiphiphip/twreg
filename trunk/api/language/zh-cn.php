@@ -7,7 +7,7 @@
 */
 
 $_lang['Twitter Register Proxy!'] = 'Twitter注册代理！';
-$_lang['Hello, %s!<br/ >  Register success! Welcome to Twitter, Please check your email! Or you can login with your Twitter account.'] = '你好 %s！<br />欢迎来到Twitter，请检查你的邮箱，或者您可以直接登录Twiiter账户。';
+$_lang['Hello, %s!<br/ >  Register success! Welcome to Twitter, Please check your email! Or you can login with your Twitter account.'] = '你好 %s！<br /> 注册成功！欢迎来到Twitter，请检查你的邮箱，或者您可以直接登录Twiiter账户。';
 $_lang['Some error occured!'] = '注册出现一些未知错误！';
 $_lang['Username has already been taken'] = '用户名已被占用';
 $_lang['Email has already been taken.'] = '邮件地址已被占用';
