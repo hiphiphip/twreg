@@ -33,218 +33,218 @@ function actionIndex(){
      * check form
      */
     $('form').submit(function(){
-        return formCheck();
+	return formCheck();
     });
     /*
      * reload captcha
      */
     $('#reloadImg').click(function(){
-        loadCaptCha();
-        return false;
+	loadCaptCha();
+	return false;
     });
     /*
      * name check and action
      */
     $('.line.name input').keyup(function(){
-        setChange('name');
-        check('name');
+	setChange('name');
+	check('name');
     });
     $('.line.name input').focus(function(){
-        if($(this).val()!='')
-            check('name');
-        else
-            setMsg('name', _l('Set your name!'));
+	if($(this).val()!='')
+	    check('name');
+	else
+	    setMsg('name', _l('Set your name!'));
     });
     /*
      * screen name check and action
      */
     $('.line.screen_name input').keyup(function(){
-        $(this).val($(this).val().replace(/[\W]/g,''));
-        setChange('screen_name');
-        check('screen_name');
+	$(this).val($(this).val().replace(/[\W]/g,''));
+	setChange('screen_name');
+	check('screen_name');
     });
     $('.line.screen_name input').focus(function(){
-        if($(this).val()!=''){
-            check('screen_name');
-        }else{
-            setMsg('screen_name', _l('Set your account username!'));
-        }
+	if($(this).val()!=''){
+	    check('screen_name');
+	}else{
+	    setMsg('screen_name', _l('Set your account username!'));
+	}
     });
     $('.line.screen_name input').blur(function(){
-        validate('screen_name');
+	validate('screen_name');
     });
     /*
      * password check and action
      */
     $('.line.password input').keyup(function(){
-        setChange('password');
-        check('password');
+	setChange('password');
+	check('password');
     });
     $('.line.password input').focus(function(){
-        if($(this).val()!='')
-            check('password');
-        else
-            setMsg('password', _l('Set your password!'));
+	if($(this).val()!='')
+	    check('password');
+	else
+	    setMsg('password', _l('Set your password!'));
     });
     $('.line.repassword input').keyup(function(){
-        setChange('repassword');
-        check('repassword');
+	setChange('repassword');
+	check('repassword');
     });
     $('.line.repassword input').focus(function(){
-        if($(this).val()!='')
-            check('repassword');
-        else
-            setMsg('repassword', _l('Set your password first!'));
+	if($(this).val()!='')
+	    check('repassword');
+	else
+	    setMsg('repassword', _l('Set your password first!'));
     });
     /*
      * email check and action
      */
     $('.line.email input').keyup(function(){
-        setChange('email');
-        check('email');
+	setChange('email');
+	check('email');
     });
     $('.line.email input').focus(function(){
-        if($(this).val()!='')
-            check('email');
-        else
-            setMsg('email', _l('Set your email!'));
+	if($(this).val()!='')
+	    check('email');
+	else
+	    setMsg('email', _l('Set your email!'));
     });
     $('.line.email input').blur(function(){
-        validate('email');
+	validate('email');
     });
     /*
      * password check and action
      */
     $('.line.captcha input').keyup(function(){
-        setChange('captcha');
-        check('captcha');
+	setChange('captcha');
+	check('captcha');
     });
     $('.line.captcha input').focus(function(){
-        if(typeof $('#recaptchaImg').attr('src') == 'undefined'){
-            loadCaptCha();
-        }else{
-            if($(this).val()!='')
-                check('captcha');
-            else
-                setMsg('captcha', _l('Type words above!'));
-        }
+	if(typeof $('#recaptchaImg').attr('src') == 'undefined'){
+	    loadCaptCha();
+	}else{
+	    if($(this).val()!='')
+		check('captcha');
+	    else
+		setMsg('captcha', _l('Type words above!'));
+	}
     });
 }
 function validate(cls){
     if(stat_check[cls] == false || stat_validate[cls]==true){
-        return false;
+	return false;
     }
     setLoad(cls);
     if(cls == 'screen_name'){
-        var method = 'valid_username';
+	var method = 'valid_username';
     }else{
-        var method = 'valid_'+cls;
+	var method = 'valid_'+cls;
     }
     $.get('api.php',{
-        'm':method,
-        's':getVal(cls)
+	'm':method,
+	's':getVal(cls)
     }, function(message){
-        var data= str2json(message);
-        if(data.valid){
-            setClass(cls, 'ok');
-            stat_validate[cls] = true;
-        }else{
-            setClass(cls, 'er');
-        }
-        var msg = '';
-        if(data.msg){
-            msg = _l(data.msg);
-        }else{
-            msg = _l('Remote error!');
-        }
-        setMsg(cls, msg);
+	var data= str2json(message);
+	if(data.valid){
+	    setClass(cls, 'ok');
+	    stat_validate[cls] = true;
+	}else{
+	    setClass(cls, 'er');
+	}
+	var msg = '';
+	if(data.msg){
+	    msg = _l(data.msg);
+	}else{
+	    msg = _l('Remote error!');
+	}
+	setMsg(cls, msg);
     });
 }
 function check(cls){
     var val = getVal(cls);
     switch(cls){
-        case 'email':
-            var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-            if(!pattern.test(val)){
-                setMsg('email', _l('Wrong email format!'));
-                setClass('email', 'er');
-            }else if(stat_validate['email'] == false){
-                setClass('email', '');
-                setMsg('email', _l('Wait validation!'));
-                stat_check['email'] = true;
-            }
-            break;
-        case 'password':
-            if(val.length<6){
-                setMsg('password', _l('Too short!'));
-                setClass('password', 'er');
-            }else{
-                var password_band = true;
-                for(i in band_password){
-                    if(band_password[i] == val){
-                        password_band = false;
-                    }
-                }
-                if(password_band == false){
-                    setMsg('password', _l('Too obvious!'));
-                    setClass('password', 'er');
-                }else{
-                    setMsg('password', _l('OK!'));
-                    setClass('password', 'ok');
-                };
-            }
-            break;
-        case 'repassword':
-            if($('#password').val()){
-                if(val != $('#password').val()){
-                    setMsg('repassword', _l('Same as password?'));
-                    setClass('repassword', 'er');
-                }else{
-                    setMsg('repassword', _l('OK!'));
-                    setClass('repassword', 'ok');
-                }
-            }else{
-                setMsg('repassword', _l('Set password first?'));
-                setClass('repassword', 'er');
-            }
-            break;
-        case 'screen_name':
-            if(val.length<2){
-                setMsg('screen_name', _l('Too short!'));
-                setClass('screen_name', 'er');
-            }else if(val.length>16){
-                setMsg('screen_name', _l('Too Long!'));
-                setClass('screen_name', 'er');
-            }else if(stat_validate['screen_name'] == false){
-                setClass('screen_name', '');
-                setMsg('screen_name', _l('Wait validation!'));
-                stat_check['screen_name'] = true;
-            }
-            break;
-        case 'name':
-            if(val!=''){
-                setMsg('name', _l('OK!'));
-                setClass('name', 'ok');
-            }else{
-                setMsg('captcha', _l('Type name must!'));
-                setClass('captcha', 'er');
-            }
-            break;
-        case 'captcha':
-            if(val!=''){
-                setMsg('captcha', '');
-                setClass('captcha', 'ok');
-            }else{
-                setMsg('captcha', _l('Type words must!'));
-                setClass('captcha', 'er');
-            }
-            break;
+	case 'email':
+	    var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+	    if(!pattern.test(val)){
+		setMsg('email', _l('Wrong email format!'));
+		setClass('email', 'er');
+	    }else if(stat_validate['email'] == false){
+		setClass('email', '');
+		setMsg('email', _l('Wait validation!'));
+		stat_check['email'] = true;
+	    }
+	    break;
+	case 'password':
+	    if(val.length<6){
+		setMsg('password', _l('Too short!'));
+		setClass('password', 'er');
+	    }else{
+		var password_band = true;
+		for(i in band_password){
+		    if(band_password[i] == val){
+			password_band = false;
+		    }
+		}
+		if(password_band == false){
+		    setMsg('password', _l('Too obvious!'));
+		    setClass('password', 'er');
+		}else{
+		    setMsg('password', _l('OK!'));
+		    setClass('password', 'ok');
+		};
+	    }
+	    break;
+	case 'repassword':
+	    if($('#password').val()){
+		if(val != $('#password').val()){
+		    setMsg('repassword', _l('Same as password?'));
+		    setClass('repassword', 'er');
+		}else{
+		    setMsg('repassword', _l('OK!'));
+		    setClass('repassword', 'ok');
+		}
+	    }else{
+		setMsg('repassword', _l('Set password first?'));
+		setClass('repassword', 'er');
+	    }
+	    break;
+	case 'screen_name':
+	    if(val.length<2){
+		setMsg('screen_name', _l('Too short!'));
+		setClass('screen_name', 'er');
+	    }else if(val.length>16){
+		setMsg('screen_name', _l('Too Long!'));
+		setClass('screen_name', 'er');
+	    }else if(stat_validate['screen_name'] == false){
+		setClass('screen_name', '');
+		setMsg('screen_name', _l('Wait validation!'));
+		stat_check['screen_name'] = true;
+	    }
+	    break;
+	case 'name':
+	    if(val!=''){
+		setMsg('name', _l('OK!'));
+		setClass('name', 'ok');
+	    }else{
+		setMsg('captcha', _l('Type name must!'));
+		setClass('captcha', 'er');
+	    }
+	    break;
+	case 'captcha':
+	    if(val!=''){
+		setMsg('captcha', '');
+		setClass('captcha', 'ok');
+	    }else{
+		setMsg('captcha', _l('Type words must!'));
+		setClass('captcha', 'er');
+	    }
+	    break;
     }
 }
 function setChange(cls){
     stat_check[cls] = false;
     if(typeof stat_validate[cls]!='undefined'){
-        stat_validate[cls] = false;
+	stat_validate[cls] = false;
     }
 }
 function setMsg(cls, msg){
@@ -253,17 +253,17 @@ function setMsg(cls, msg){
 function setClass(cls, str){
     $('.line.'+cls+' i').attr('class', '').addClass(str);
     if(str=='ok'){
-        stat_check[cls] = true;
+	stat_check[cls] = true;
     }else{
-        stat_check[cls] = false;
-        if(typeof stat_validate[cls]!='undefined'){
-            stat_validate[cls] = false;
-        }
+	stat_check[cls] = false;
+	if(typeof stat_validate[cls]!='undefined'){
+	    stat_validate[cls] = false;
+	}
     }
 }
 function setLoad(cls, str){
     if(typeof str == 'undefined'){
-        var str = _l('Checking...');
+	var str = _l('Checking...');
     }
     setClass(cls, '');
     setMsg(cls, '<img src="./res/check.gif" /> '+str);
@@ -274,9 +274,9 @@ function getVal(cls){
 
 function str2json(data){
     try{
-        eval('var json=' + data + ';');
+	eval('var json=' + data + ';');
     }catch(e){
-        return false;
+	return false;
     }
     return json;
 }
@@ -285,86 +285,90 @@ function loadCaptCha(){
     var hashString = '';
     setLoad('captcha', _l('Load captcha...'));
     $.get('api.php',{
-        m:'recaptcha',
-        r:Math.random()
+	m:'recaptcha',
+	r:Math.random()
     }, function(message){
-        recaptcha = str2json(message);
-        if(recaptcha.data){
-            $('#recaptchaImg').attr('src', recaptcha.image);
-            $('#recaptcha_challenge_field').val(recaptcha.data);
-            setMsg('captcha', _l('Type words above!'));
-        }else{
-            setClass('captcha', 'er');
-            setMsg('captcha', _l('Load captcha error!'));
-        }
+	recaptcha = str2json(message);
+	if(recaptcha.data){
+	    if(twreg_captcha_url!='false' && twreg_captcha_url){
+		$('#recaptchaImg').attr('src', twreg_captcha_url + recaptcha.query);
+	    }else{
+		$('#recaptchaImg').attr('src', recaptcha.image);
+	    }
+	    $('#recaptcha_challenge_field').val(recaptcha.data);
+	    setMsg('captcha', _l('Type words above!'));
+	}else{
+	    setClass('captcha', 'er');
+	    setMsg('captcha', _l('Load captcha error!'));
+	}
     });
 }
 function formCheck(){
     for(i in stat_check){
-        if(stat_check[i] == false){
-            check(i);
-            if(stat_check[i] == false){
-                alert(_l(i)+' '+_l('checked error!'));
-                $('#'+i).focus();
-                return false;
-            }
-        }
+	if(stat_check[i] == false){
+	    check(i);
+	    if(stat_check[i] == false){
+		alert(_l(i)+' '+_l('checked error!'));
+		$('#'+i).focus();
+		return false;
+	    }
+	}
     }
     for(i in stat_validate){
-        if(stat_validate[i] == false){
-            alert(_l(i)+' '+_l('must be avaliable!'));
-            $('#'+i).focus();
-            validate(i);
-            return false;
-        }
+	if(stat_validate[i] == false){
+	    alert(_l(i)+' '+_l('must be avaliable!'));
+	    $('#'+i).focus();
+	    validate(i);
+	    return false;
+	}
     }
     if($('#recaptcha_challenge_field').val()==''){
-        alert(_l(i)+' '+_l('twitter captcha load error, please refresh this page!'));
-        return false;
+	alert(_l(i)+' '+_l('twitter captcha load error, please refresh this page!'));
+	return false;
     }
 }
 function formLoad(){
     for(i in stat_check){
-        check(i);
+	check(i);
     }
 }
 function initlazeKey(){
     $('input').attr('disabled', 'true');
     $('#error_info').html('<img src="./res/check.gif" /> '+_l('Intilazing...'));
     $('#error_info').css({
-        'color':'#333',
-        'font-weight':'normal'
+	'color':'#333',
+	'font-weight':'normal'
     });
     $.get('api.php', {
-        m: 'authkey',
-        rand: Math.random()
+	m: 'authkey',
+	rand: Math.random()
     }, function(message){
-        var data = str2json(message);
-        if(data.data){
-            $('#error_info').css({
-                'color':'#090'
-            });
-            $('#error_info').html(_l('Initialized!'));
-            $('#authenticity_token').val(data.data);
-            $('input').removeAttr('disabled');
-        }else{
-            $('#error_info').css({
-                'color':'#f00',
-                'font-weight':'bold'
-            });
-            $('#error_info').html('<a id="reinitialize" href="#">'+_l('Refresh')+'</a>, '+_l('initialized faild!'));
-            $('#reinitialize').click(function(){
-                initlazeKey();
-                return false;
-            });
-        }
+	var data = str2json(message);
+	if(data.data){
+	    $('#error_info').css({
+		'color':'#090'
+	    });
+	    $('#error_info').html(_l('Initialized!'));
+	    $('#authenticity_token').val(data.data);
+	    $('input').removeAttr('disabled');
+	}else{
+	    $('#error_info').css({
+		'color':'#f00',
+		'font-weight':'bold'
+	    });
+	    $('#error_info').html('<a id="reinitialize" href="#">'+_l('Refresh')+'</a>, '+_l('initialized faild!'));
+	    $('#reinitialize').click(function(){
+		initlazeKey();
+		return false;
+	    });
+	}
     })
 }
 
 function _l(key){
     if(typeof _lang[key] != 'undefined'){
-        return _lang[key];
+	return _lang[key];
     }else{
-        return key;
+	return key;
     }
 }

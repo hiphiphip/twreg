@@ -9,6 +9,8 @@
 define('APP_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define('API_URL', 'http://twreg.info/api/');
 define('TWREG_URL', 'http://'.$_SERVER['HTTP_HOST'] . substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/', -1)+1));
+#define('TWREG_CAPTCHA_URL', 'http://twreg.info/api/captcha.php');
+define('TWREG_CAPTCHA_URL', false);
 
 $_lang = array();
 if(isset($_GET['l'])) {
@@ -16,9 +18,9 @@ if(isset($_GET['l'])) {
     setcookie('twreg_language', $language, time()+3600*24*30, '/');
 } else {
     if(isset($_COOKIE['twreg_language'])) {
-        $language = $_COOKIE['twreg_language'];
+	$language = $_COOKIE['twreg_language'];
     }else {
-        $language = 'zh-cn';
+	$language = 'zh-cn';
     }
 }
 
