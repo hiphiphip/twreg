@@ -12,7 +12,7 @@ include './config.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?=_l('Twitter Register Proxy!')?></title>
+<title><?php echo _l('Twitter Register Proxy!'); ?></title>
 </head>
 <style type="text/css">
 body	{ font-size:16px; font-family:Arial, Helvetica, sans-serif; background-color:#E6F5F8; height:100%;}
@@ -23,12 +23,12 @@ textarea	{ font-size:12px; font-family:Arial, Helvetica, sans-serif;}
   <tr>
     <td align="right"><p><img src="res/t.gif" width="347" height="246" /></p>
     <p>You can put the button in your blog as: </p>
-    <p><script>var twreg_widget_url = '<?=TWREG_URL?>widget.php?widget=true';</script><script src="./widget.js"></script></p>
+    <p><script>var twreg_widget_url = '<?php echo TWREG_URL; ?>widget.php?widget=true';</script><script src="./widget.js"></script></p>
     <p>Use javascript code as: </p>
     <p>
       <label>
-      <textarea name="textarea" id="textarea" cols="55" rows="4" style="border:solid 5px #83D4EA; padding:5px;" onfocus="this.select();"><script>var twreg_widget_url = '<?=TWREG_URL?>widget.php?widget=true';</script>
-<script src="<?=TWREG_URL?>widget.js"></script></textarea>
+      <textarea name="textarea" id="textarea" cols="55" rows="4" style="border:solid 5px #83D4EA; padding:5px;" onfocus="this.select();"><script>var twreg_widget_url = '<?php echo TWREG_URL; ?>widget.php?widget=true';</script>
+<script src="<?php echo TWREG_URL; ?>widget.js"></script></textarea>
       </label>
     </p></td>
     <td width="500" align="right">

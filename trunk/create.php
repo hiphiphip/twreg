@@ -9,10 +9,9 @@ if($_POST) {
     $postData['recaptcha_challenge'] = $_POST['recaptcha_challenge_field'];
     $postData['authenticity_token'] = $_POST['authenticity_token'];
     //$postData['debug'] = 'true';
-    //var_dump($post);
     $post = http(API_URL . '?m=create&t=serialize&l=' . $language, $postData);
-    $post = @unserialize(stripslashes($post['response']));
     //var_dump($post);
+    $post = @unserialize(stripslashes($post['response']));
     if($post['errcode'] == '0') {
         $msg = $post['msg'];
         $class = 'ok';
@@ -35,9 +34,9 @@ if($_POST) {
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?=_l('Register Response!')?></title>
+        <title><?php echo _l('Register Response!'); ?></title>
         <style type="text/css">
-            body	{ margin: 0; padding: 0; color: #333; font-size:16px; font-family: <?=_l("'Arial',sans-serif")?>; background-color: #f3f3f3; background: transparent;}
+            body	{ margin: 0; padding: 0; color: #333; font-size:16px; font-family: <?php echo _l("'Arial',sans-serif")?>; background-color: #f3f3f3; background: transparent;}
             a   { color:#E83228;}
             a:hover	{ color:#009;}
             #wrap	{ margin: 10px auto; width:430px; padding:10px; background-color: #fff;  -moz-border-radius:5px; -webkit-border-radius:5px; -khtml-border-radius: 5px; border-radius: 5px; height:430px; overflow:hidden;}
@@ -50,8 +49,8 @@ if($_POST) {
     </head>
     <body>
         <div id="wrap">
-            <div id="msg" class="<?=$class?>"><?=$msg?></div>
-            <div style="margin-top:30px; text-align: left; font-size: 20px;"><?=_l('Twitter clients avliable:')?></div>
+            <div id="msg" class="<?php echo $class; ?>"><?php echo $msg; ?></div>
+            <div style="margin-top:30px; text-align: left; font-size: 20px;"><?php echo _l('Twitter clients avliable:'); ?></div>
             <ul style="margin-top:10px; text-align: left;">
                 <li><a href="http://br.st" target="_blank">br.st</a>  Twitter client</li>
                 <li><a href="http://brizzly.com/" target="_blank">brizzly.com</a>  Twitter client</li>
