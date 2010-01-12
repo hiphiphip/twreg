@@ -107,7 +107,7 @@ function actionIndex(){
 	if($(this).val()!='')
 	    check('email');
 	else
-	    setMsg('email', _l('Set your email!'));
+	    setMsg('email', _l('For receiving confirm mail!'));
     });
     $('.line.email input').blur(function(){
 	validate('email');

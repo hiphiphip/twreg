@@ -34,6 +34,7 @@ $_lang['js']['Set your account username!'] = '设置用户名';
 $_lang['js']['Set your password!'] = '设置密码！';
 $_lang['js']['Set your password first!'] = '请先设置密码';
 $_lang['js']['Set your email!'] = '设置邮件地址！';
+$_lang['js']['For receiving confirm mail!'] = '用于接收验证邮件';
 $_lang['js']['Type words above!'] = '填写上面的单词！';
 $_lang['js']['Remote error!'] = '响应失败！';
 $_lang['js']['Wrong email format!'] = '错误的邮件格式！';
