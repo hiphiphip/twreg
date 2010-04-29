@@ -7,7 +7,7 @@
 */
 
 define('APP_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
-define('API_URL', 'http://twreg.info/api/');
+define('API_URL', 'http://twreg.cc/api/');
 define('TWREG_URL', 'http://'.$_SERVER['HTTP_HOST'] . substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/', -1)+1));
 #define('TWREG_CAPTCHA_URL', 'http://twreg.info/api/captcha.php');
 define('TWREG_CAPTCHA_URL', false);
