@@ -28,13 +28,20 @@ class API {
 
     function recaptcha() {
         $file = file_get_contents('http://www.google.com/recaptcha/api/challenge?k=6LfbTAAAAAAAAE0hk8Vnfd1THHnn9lJuow6fgulO&lang=en');
-        $pattern1 = "/challenge ?\: ?'([\w_\-]+)',/";
-        $pattern2 = "/server ?\: ?'(.*?)'/";
-        preg_match($pattern1, $file, $matches1);
-        preg_match($pattern2, $file, $matches2);
+        #$pattern1 = "/challenge ?\: ?'([\w_\-]+)',/";
+        #$pattern2 = "/server ?\: ?'(.*?)'/";
+        #preg_match($pattern1, $file, $matches1);
+        #preg_match($pattern2, $file, $matches2);
+        preg_match_all("/([a-zA-Z0-9_\-]+) ?: ?'?(.*?)'?,/", $file, $matches);
+        foreach($matches[1] as $k=>$v){
+        	if(trim($v)=='challenge'){
+        		$challenge = trim($matches[2][$k]);
+        	}
+        	if(trim($v)=='server'){        		
+        		$server = trim($matches[2][$k]);
+        	}
+        }
         $array = array();
-        $challenge = $matches1[1];
-        $server = $matches2[1];
         $imgurl = API_URL . 'captcha.php?c='. $challenge . '&s=' . $server;
         $imgquery = '?c='. $challenge . '&s=' . $server;
         if(!$challenge) {
