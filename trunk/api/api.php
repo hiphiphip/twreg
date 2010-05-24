@@ -28,8 +28,8 @@ class API {
 
     function recaptcha() {
         $file = file_get_contents('http://www.google.com/recaptcha/api/challenge?k=6LfbTAAAAAAAAE0hk8Vnfd1THHnn9lJuow6fgulO&lang=en');
-        $pattern1 = "/challenge\:'([\w_\-]+)',/";
-        $pattern2 = "/server\:'(.*?)'/";
+        $pattern1 = "/challenge ?\: ?'([\w_\-]+)',/";
+        $pattern2 = "/server ?\: ?'(.*?)'/";
         preg_match($pattern1, $file, $matches1);
         preg_match($pattern2, $file, $matches2);
         $array = array();
